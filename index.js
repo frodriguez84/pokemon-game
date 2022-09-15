@@ -1,6 +1,7 @@
 const canvas = document.querySelector('canvas')
 const c = canvas.getContext('2d')
 
+
 canvas.width = 1024
 canvas.height = 576
 
@@ -164,6 +165,11 @@ function animate() {
 
                 //Deactivate animation frame
                 window.cancelAnimationFrame(animationId)
+
+                audio.map.stop()
+                audio.initBattle.play()
+                audio.battle.play()
+
                 battle.initiated = true
                 activateBattle()
                 break
@@ -275,8 +281,6 @@ function animate() {
     }
 }
 
-//animate()
-
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
     switch (e.key) {
@@ -342,6 +346,14 @@ function activateBattle() {
         }
     })
 }
+
+let clicked = false
+addEventListener('click', () => {
+    if (!clicked) {
+        audio.map.play()
+        clicked = true
+    }
+})
 
 
 

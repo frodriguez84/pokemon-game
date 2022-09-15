@@ -86,6 +86,7 @@ function finishBattle() {
                     opacity: 0
                 })
                 battle.initiated = false
+                audio.map.play()
             }
         })
     })
@@ -107,8 +108,9 @@ function animateBattle() {
         sprite.draw()
     })
 }
-initBattle()
-animateBattle()
+animate()
+//initBattle()
+//animateBattle()
 
 document.querySelector('#dialogueBox').addEventListener('click', (e) => {
     if (queue.length > 0) {
