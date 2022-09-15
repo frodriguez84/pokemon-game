@@ -273,77 +273,9 @@ function animate() {
                 movable.position.x += 3;
             })
     }
-
 }
 
 //animate()
-
-const battleBackgroundImage = new Image()
-battleBackgroundImage.src = "./img/battleBackground.png"
-const battleBackground = new Sprite({
-    position: {
-        x: 0,
-        y: 0
-    },
-    image: battleBackgroundImage
-})
-
-//Enemy Draggle
-const draggleImage = new Image()
-draggleImage.src = "./img/draggleSprite.png"
-const draggle = new Sprite({
-    position: {
-        x: 800,
-        y: 100
-    },
-    image: draggleImage,
-    frames: {
-        max: 4,
-        hold: 30
-    },
-    animate: true,
-    isEnemy: true
-})
-
-//Player Emby
-const embyImage = new Image()
-embyImage.src = "./img/embySprite.png"
-const emby = new Sprite({
-    position: {
-        x: 280,
-        y: 325
-    },
-    image: embyImage,
-    frames: {
-        max: 4,
-        hold: 30
-    },
-    animate: true
-})
-
-function animateBattle() {
-    window.requestAnimationFrame(animateBattle)
-    battleBackground.draw()
-    draggle.draw()
-    emby.draw()
-}
-//animate()
-animateBattle()
-
-document.querySelectorAll('button').forEach((button) => {
-    button.addEventListener('click', () => {
-        emby.attack({
-            attack: {
-                name: 'Tackle',
-                damage: 10,
-                type: 'Normal'
-            },
-            recipient: draggle
-        })
-
-    })
-})
-
 
 let lastKey = ''
 window.addEventListener('keydown', (e) => {
@@ -398,6 +330,7 @@ function activateBattle() {
                 duration: 0.5,
                 onComplete() {
                     //Activate new animation loop
+                    initBattle()
                     animateBattle()
                     gsap.to('#overlappingDiv', {
                         opacity: 0,
